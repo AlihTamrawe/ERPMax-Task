@@ -49,11 +49,11 @@
     <h1>All My products</h1>
     <table class="table table-striped">
         <thead>
-                {% for  products in all_products %}
+                {% for  products in all_locations %}
                 <tr>
                       <th scope="col">#</th>
                 <th scope="col"> <p>Name :  <a href="/product/{{products["product_id"]}}"> t {{products["product_name"]}}</a></p></th>
-                <th scope="col"> <p>location :{{products["location"]}}</p></th>
+                <th scope="col"> <p>location :{{products["location_name"]}}</p></th>
             </tr>
 
         {% endfor %}
