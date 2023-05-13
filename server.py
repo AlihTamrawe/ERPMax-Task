@@ -26,8 +26,8 @@ def index2():
     products = mysql.query_db('SELECT * FROM product;')  # call the query_db function, pass in the query as a string
     mysql2 = connectToMySQL('inventory_management')	        # call the function, passing in the name of our db
 
-    locations = mysql2.query_db('SELECT * FROM location;')  # call the query_db function, pass in the query as a string
-    print(products)
+    locations = mysql2.query_db('SELECT * FROM location JOIN product where location_id = idlocation ;')  # call the query_db function, pass in the query as a string
+    print(locations)
     f=2
     return render_template("index.html",all_products = products,all_locations=locations,flag =f)# http://localhost:5000 - should display 8 by 8 checkerboard
 
