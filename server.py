@@ -49,8 +49,12 @@ def add_product_to_db():
     else:
         print("not Valid")
         
-    return redirect("/") 
-@app.route("/create_location", methods=["POST"])
+    return redirect("/")
+
+
+
+
+@app.route("/create_location", methods=["POST"])  # Create location form 
 def add_location_to_db():
     mysql = connectToMySQL('inventory_management')	        # call the function, passing in the name of our db
     QUERY = 'INSERT INTO inventory_management.location (location_name  ) values (%(l_name)s );'
@@ -62,7 +66,8 @@ def add_location_to_db():
     new_location = mysql.query_db(QUERY,data)
     return redirect("/two") 
 
-@app.route('/updatelocation/<id>') # update
+
+@app.route('/updatelocation/<id>') # update location form
 def update_location_form(id):
     mysql = connectToMySQL('inventory_management')	        # call the function, passing in the name of our db
     query = "SELECT * FROM location WHERE idlocation = %(id)s;"
@@ -74,7 +79,7 @@ def update_location_form(id):
 
 
 
-@app.route("/update_location/<id>", methods=["POST"])
+@app.route("/update_location/<id>", methods=["POST"]) # update location Route
 def edit_location_to_db(id):
     mysql = connectToMySQL('inventory_management')	        # call the function, passing in the name of our db
     QUERY = ' UPDATE location SET location_name = %(l_name)s WHERE idlocation = %(id)s ;'
@@ -87,7 +92,39 @@ def edit_location_to_db(id):
     new_location = mysql.query_db(QUERY,data)
     return redirect("/two") 
 
-@app.route('/product/<id>') # for a route '/users/____/____', two parameters in the url get passed as username and id
+
+
+
+@app.route('/updateproduct/<id>') # update prod form
+def update_product_form(id):
+    mysql = connectToMySQL('inventory_management')	        # call the function, passing in the name of our db
+    query = "SELECT * FROM product WHERE product_id = %(id)s;"
+    data = { 'id' : id }
+    result = mysql.query_db(query, data)    
+    print(result)
+    f=7
+    return render_template("index.html",prod = result[0],flag =f) 
+
+
+
+@app.route("/update_product/<id>", methods=["POST"]) # update prod Route
+def edit_product_to_db(id):
+    mysql = connectToMySQL('inventory_management')	        # call the function, passing in the name of our db
+    QUERY = ' UPDATE product SET product_name = %(p_name)s WHERE product_id = %(id)s ;'
+    data = {
+         "p_name": request.form["pname"],
+         "id" : id
+
+    }
+    print (data)
+    new_location = mysql.query_db(QUERY,data)
+    return redirect("/") 
+
+
+
+
+
+@app.route('/product/<id>') # Show prod
 def show_product_profile(id):
     mysql = connectToMySQL('inventory_management')	        # call the function, passing in the name of our db
     query = "SELECT * FROM product WHERE product_id = %(id)s;"

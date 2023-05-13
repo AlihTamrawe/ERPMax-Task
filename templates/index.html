@@ -97,6 +97,8 @@
 <h1>this Special {{prods["product_name"]}}</h1>
 <p>  Name: {{prods["product_name"]}}</p>
 <p>location :{{location["location_name"]}}</p>
+<a class="alert alert-primary" role="alert" href="/updateproduct/{{prods["product_id"]}}"> update product</a>
+
 {% endif%}
 
 
@@ -122,8 +124,8 @@
 {% if flag == 7  %}
         <div class="alert alert-info" role="alert"class="alert alert-info" role="alert">
             <h1>Edit a product</h1>
-                <form action="/update_product/{{prod["idlocation"]}}" method="POST">
-                    <p>location Name: <input type="text" value="{{prod["location_name"]}}" name="lname"></p>
+                <form action="/update_product/{{prod["product_id"]}}" method="POST">
+                    <p>product Name: <input type="text" value="{{prod["product_name"]}}" name="pname"></p>
 
                     <input type="submit" value="update product">
                 </form>
