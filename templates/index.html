@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CheckBoard</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script type="text/javascript" src="{{ url_for('static', filename='jscript.js') }}"></script>
+<!-- linking an image -->
+    <!-- <img src="{{ url_for('static', filename='my_img.png') }}"> -->
+
+</head>
+<body>
+    
+    <header  >
+        <div class="card xl space_between">
+            <a class="alert alert-primary" role="alert" href="/two"> Locations</a>
+
+        </div>
+        <div class="card">
+            <a class="alert alert-primary center" role="alert"href="/">Main</a>
+
+        </div>
+    </header>
+    <main>
+    
+
+
+        <div >
+            {% if  flag==2 %}
+<div class="alert alert-info" role="alert"class="alert alert-info" role="alert">
+<h1>Add a Product</h1>
+<form action="/create_product" method="POST">
+    <p> the ProductName : <input type="text" name="pname"></p>
+    <p>location Name: 
+        <select name="locations_id">
+        {% for  location in all_locations %}
+        <option value="{{location["idlocation"]}}">{{location["location_name"]}} </option>
+        {% endfor%}
+        </select></p>
+
+    <input type="submit" value="Add product">
+</form>
+</div>
+
+<div class="alert alert-info" role="alert"class="alert alert-info" role="alert">
+    <h1>All My products</h1>
+    <table class="table table-striped">
+        <thead>
+                {% for  products in all_products %}
+                <tr>
+                      <th scope="col">#</th>
+                <th scope="col"> <p>Name :  <a href="/product/{{products["product_id"]}}"> t {{products["product_name"]}}</a></p></th>
+                <th scope="col"> <p>location :{{products["location"]}}</p></th>
+            </tr>
+
+        {% endfor %}
+</thead>
+    </table>
+
+
+
+
+</div>
+
+
+   </div>
+{% elif flag == 3 %}
+<div class="alert alert-info" role="alert"class="alert alert-info" role="alert">
+        <h1>Add a Location</h1>
+            <form action="/create_location" method="POST">
+                <p>location Name: <input type="text" name="lname"></p>
+
+                <input type="submit" value="Add location">
+            </form>
+            </div>
+            <div class="alert alert-info" role="alert"class="alert alert-info" role="alert">
+
+        <h1>All My locations</h1>
+        <table class="table table-striped">
+            <thead>
+                {% for  location in all_locations %}
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col"> <p>location :{{location["location_name"]}}</p></th>
+                        <th scope="col">  <a href="/location/{{location["location_name"]}}/{{location["idlocation"]}}">  {{location["location_name"]}}</a> </th>
+
+{% endfor %}
+            </thead>
+        </table>
+
+            </div>
+{% endif%}
+{% if  flag==4 %}
+<h1>this Special {{prods["product_name"]}}</h1>
+<p>  Name: {{prods["product_name"]}}</p>
+<p>location :{{location["location_name"]}}</p>
+{% endif%}
+
+
+
+{% if  flag==5 %}
+<h1>Page is for {{loca["location_name"]}}</h1>
+<p>  Name: {{loca["location_name"]}}</p>
+
+<h1>Location Products</h1>
+<table class="table table-striped">
+    <thead>
+        {% for  product in all_product %}
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col"> <p>product Name :{{product["product_name"]}}</p></th>
+            </tr>
+{% endfor %}
+    </thead>
+</table>
+<a class="alert alert-primary" role="alert" href="/updatelocation/{{loca["idlocation"]}}"> update location</a>
+{% endif%}
+
+{% if flag == 7  %}
+        <div class="alert alert-info" role="alert"class="alert alert-info" role="alert">
+            <h1>Edit a product</h1>
+                <form action="/update_product/{{prod["idlocation"]}}" method="POST">
+                    <p>location Name: <input type="text" value="{{prod["location_name"]}}" name="lname"></p>
+
+                    <input type="submit" value="update product">
+                </form>
+            </div>
+{% endif%}
+
+{% if flag == 8  %}
+        <div class="alert alert-info" role="alert"class="alert alert-info" role="alert">
+            <h1>Edit a Location</h1>
+                <form action="/update_location/{{loca["idlocation"]}}" method="POST">
+                    <p>location Name: <input type="text" value="{{loca["location_name"]}}" name="lname"></p>
+
+                    <input type="submit" value="update location">
+                </form>
+            </div>
+{% endif%}
+
+
+        </div>
+
+
+
+
+
+        
+    </main>
+
+
+
+    
+</body>
+</html>

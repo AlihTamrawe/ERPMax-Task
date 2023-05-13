@@ -1,0 +1,52 @@
+*{
+    background-color: rgb(232, 238, 238);
+    margin: 0;
+    padding: 0;
+}
+main{
+    position: relative;
+    top: 150px;
+    left: 150px;
+    
+}
+
+#checker_board{
+    
+    width: 80%;
+    height: 600px;
+    display: block;
+    border: 10px solid rgba(0,0,0,0.65);
+	border-radius: 10px;
+	position: relative;
+}
+.black {
+    background-color: black;
+}
+.red{
+     background-color: red; 
+}
+.square{
+    width: 75px;
+    height: 75px;
+    float: left;
+}
+.orange {
+      background-color: orange; 
+}
+.blue {
+    background-color: blue;
+}
+header{
+    position: absolute;
+    display: flex;
+     background-color: aliceblue;
+     border: 4px 2px black;
+    box-shadow: 2px gray;
+    width: 100%;
+    height: 150px;
+    padding: 20px;
+}
+header a {
+    font-family: cursive;
+    text-align: center;
+}
