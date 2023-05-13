@@ -168,8 +168,10 @@ def show_locationnameproductname_profile(locationname, id):
     query2 = "SELECT * FROM product WHERE location_id = %(id)s;"
     data = { 'id' : id }
 
-    result2 = mysql.query_db(query2, data)    
-    print(result2[0])
+    result2 = mysql.query_db(query2, data)   
+    if  result2 == None :  # out of range error 
+            print(result2[0])
+            return render_template("index.html",prods = None,location = result[0],flag = 0)
 
     f=5
     return render_template("index.html",locationname=locationname,loca = result[0],all_product = result2,flag =f)# http://localhost:5000 - should display 8 by 8 checkerboard
