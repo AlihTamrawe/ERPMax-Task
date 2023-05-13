@@ -25,11 +25,13 @@ def index2():
     mysql = connectToMySQL('inventory_management')	        # call the function, passing in the name of our db
     products = mysql.query_db('SELECT * FROM product;')  # call the query_db function, pass in the query as a string
     mysql2 = connectToMySQL('inventory_management')	        # call the function, passing in the name of our db
+    locations = mysql2.query_db('SELECT * FROM location JOIN product where location_id = idlocation ;')  
+    mysql3 = connectToMySQL('inventory_management')	        # call the function, passing in the name of our db
+    allocations = mysql3.query_db('SELECT * FROM location  ;')  # call the query_db function, pass in the query as a string
 
-    locations = mysql2.query_db('SELECT * FROM location JOIN product where location_id = idlocation ;')  # call the query_db function, pass in the query as a string
     print(locations)
     f=2
-    return render_template("index.html",all_products = products,all_locations=locations,flag =f)# http://localhost:5000 - should display 8 by 8 checkerboard
+    return render_template("index.html",all_products = products,locationsforprod=locations,all_locations=allocations,flag =f)# http://localhost:5000 - should display 8 by 8 checkerboard
 
 @app.route("/create_product", methods=["POST"])
 def add_product_to_db():
@@ -131,6 +133,21 @@ def delete_product_to_db(id):
     print (data)
     new_location = mysql.query_db(QUERY,data)
     return redirect("/") 
+
+
+
+
+@app.route("/delete_location/<id>") # DELETE location Route
+def delete_location_to_db(id):
+    mysql = connectToMySQL('inventory_management')	        # call the function, passing in the name of our db
+    QUERY = 'DELETE FROM location WHERE idlocation = %(id)s  ;'
+    data = {
+        "id" : id
+
+    }
+    print (data)
+    new_location = mysql.query_db(QUERY,data)
+    return redirect("/two") 
 
 
 

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CheckBoard</title>
+    <title>ERPMax-Task</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script type="text/javascript" src="{{ url_for('static', filename='jscript.js') }}"></script>
@@ -49,7 +49,7 @@
     <h1>All My products</h1>
     <table class="table table-striped">
         <thead>
-                {% for  products in all_locations %}
+                {% for  products in locationsforprod %}
                 <tr>
                       <th scope="col">#</th>
                 <th scope="col"> <p>Name :  <a href="/product/{{products["product_id"]}}"> t {{products["product_name"]}}</a></p></th>
@@ -121,6 +121,8 @@
     </thead>
 </table>
 <a class="alert alert-primary" role="alert" href="/updatelocation/{{loca["idlocation"]}}"> update location</a>
+<a class="alert alert-primary" role="alert" href="/delete_location/{{loca["idlocation"]}}"> DELETE location</a>
+
 {% endif%}
 
 {% if flag == 7  %}
