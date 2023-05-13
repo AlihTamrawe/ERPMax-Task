@@ -120,6 +120,17 @@ def edit_product_to_db(id):
     new_location = mysql.query_db(QUERY,data)
     return redirect("/") 
 
+@app.route("/delete_product/<id>") # DELETE prod Route
+def delete_product_to_db(id):
+    mysql = connectToMySQL('inventory_management')	        # call the function, passing in the name of our db
+    QUERY = 'DELETE FROM product WHERE product_id = %(id)s  ;'
+    data = {
+        "id" : id
+
+    }
+    print (data)
+    new_location = mysql.query_db(QUERY,data)
+    return redirect("/") 
 
 
 
