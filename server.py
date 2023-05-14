@@ -149,7 +149,7 @@ def add_move_to_db():
 @app.route('/movement') # update move form
 def show_movement():
     mysql = connectToMySQL('inventory_management')	        
-    query = "SELECT idproductmovement, product_name, to_location, from_location    FROM productmovement     LEFT JOIN product   ON     product_id_m = product_id   ;"
+    query = "SELECT idproductmovement, product_name, to_location, quantity , timestamp ,from_location     FROM productmovement     LEFT JOIN product   ON     product_id_m = product_id   ;"
     result = mysql.query_db(query)   
     mysql1 = connectToMySQL('inventory_management')	        
     query2 = "SELECT * FROM location ;"
@@ -173,6 +173,60 @@ def update_location_form(id):
     f=8
     return render_template("index.html",loca = result[0],flag =f) 
 
+
+@app.route("/move_into/<id>") # update location move out
+def move_into_to_db(id):
+    mysql = connectToMySQL('inventory_management')	        
+    QUERY = ' UPDATE productmovement SET  from_location = %(l_name)s WHERE idproductmovement = %(id)s ;'
+    data = {
+         "l_name": None,
+         "id" : id
+
+    }
+    print ("done o")
+    new_location = mysql.query_db(QUERY,data)
+    return redirect("/movement") 
+
+@app.route("/move_out/<id>") # update location move out
+def move_out_to_db(id):
+    mysql = connectToMySQL('inventory_management')	        
+    QUERY = ' UPDATE productmovement SET  to_location= %(l_name)s WHERE idproductmovement = %(id)s ;'
+    data = {
+         "l_name": None,
+         "id" : id
+
+    }
+    print ("done")
+    new_location = mysql.query_db(QUERY,data)
+    return redirect("/movement") 
+
+
+
+@app.route("/set_location_f/<id>",methods=["POST"]) # update location move out
+def set_from_db(id):
+    mysql = connectToMySQL('inventory_management')	        
+    QUERY = ' UPDATE productmovement SET  from_location = %(loc_id)s WHERE idproductmovement = %(id)s ;'
+    data = {
+            "id" : id,
+            "loc_id":request.form["location_f"]
+
+    }
+    print (request.form["location_f"])
+    new_location = mysql.query_db(QUERY,data)
+    return redirect("/movement") 
+
+@app.route("/set_location_t/<id>",methods=["POST"]) # update location move out
+def set_to_db(id):
+    mysql = connectToMySQL('inventory_management')	        
+    QUERY = ' UPDATE productmovement SET  to_location = %(loc_id)s WHERE idproductmovement = %(id)s ;'
+    data = {
+            "id" : id,
+            "loc_id":request.form["location_to"]
+
+    }
+    print (request.form["location_to"])
+    new_location = mysql.query_db(QUERY,data)
+    return redirect("/movement") 
 
 
 @app.route("/update_location/<id>", methods=["POST"]) # update location Route
@@ -228,6 +282,18 @@ def delete_product_to_db(id):
     new_location = mysql.query_db(QUERY,data)
     return redirect("/") 
 
+
+@app.route("/delete_movement/<id>") # DELETE prod Route
+def delete_movement_to_db(id):
+    mysql = connectToMySQL('inventory_management')	        
+    QUERY = 'DELETE FROM productmovement WHERE product_id = %(id)s  ;'
+    data = {
+        "id" : id
+
+    }
+    print (data)
+    new_location = mysql.query_db(QUERY,data)
+    return redirect("/movement") 
 
 
 

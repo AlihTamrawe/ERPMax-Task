@@ -231,9 +231,9 @@
 
 
         
-    </main>
+    </main >
     
-    <main>
+    <main style="left: 50px;">
         {% if flag == 10%}
         <div class="container ">
             <table class="table table-bordered">
@@ -264,7 +264,7 @@
         {% endif%}
 
         {% if flag == 11%}
-        <div class="container ">
+        <div class="container col-xl ">
             <table class="table table-bordered">
                 <thead>
 
@@ -287,10 +287,43 @@
                     <tr>
                         <th scope="col"># {{movement["idproductmovement"]}}</th>
                         <th scope="col">{{movement["product_name"]}}</th>
+                        {% if movement["to_location"]  %}
                         <th scope="col">{{all_location.get(movement["to_location"])}}</th>
+                        {% else %}
+                        <th scope="col">
+                            <form action="/set_location_t/{{movement["idproductmovement"]}}" method="post">
+                            <select name="location_to">
+                                {% for i in all_location%}
+                                <option value="{{i}}" selected>{{all_location.get(i)}} </option>
+                                {% endfor %}
+
+                            </select>
+                                <input type="submit" value="set">
+                            </form>
+                        </th>
+                        {% endif %}
+
+
+                        {% if movement["from_location"]  %}
                         <th scope="col">{{all_location.get(movement["from_location"])}}</th>
+                        {% else %}
+                        <th scope="col">
+                            <form action="/set_location_f/{{movement["idproductmovement"]}}" method="post">
+                            <select name="location_f">
+                                {% for i in all_location%}
+                                <option value="{{i}}" selected>{{all_location.get(i)}} </option>
+                                {% endfor %}
+
+                            </select>
+                                <input type="submit" value="set">
+                            </form>
+                        </th>
+                        {% endif %}
                         <th scope="col">{{movement["quantity"]}}</th>
                         <th scope="col">{{movement["timestamp"]}}</th>
+                        <th scope="col"><a class="alert alert-primary" role="alert" href="/move_into/{{movement["idproductmovement"]}}"> Move out </a>   </th>
+                        <th scope="col"><a class="alert alert-primary" role="alert" href="/move_out/{{movement["idproductmovement"]}}"> Move into</a>   </th>
+                        <th scope="col"><a class="btn btn-warning" role="alert" href="/delete_movement/{{movement["idproductmovement"]}}"> Delete </a>   </th>
 
                     </tr>
                     {% endfor %}
