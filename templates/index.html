@@ -10,7 +10,6 @@
     <script type="text/javascript" src="{{ url_for('static', filename='jscript.js') }}"></script>
 <!-- linking an image -->
     <!-- <img src="{{ url_for('static', filename='my_img.png') }}"> -->
-
 </head>
 <body>
     
@@ -273,20 +272,25 @@
                     <tr>
                         <th scope="row">id</th>
                         <td>product</td>
-                        <td>location</td>
+                        <td> to location</td>
+                        <td>from location</td>
+
                         <td>qty</td>
+                        <td>time Stamp</td>
+
                     </tr>
                     
                 </thead>
 
                     <tbody>
-                        {% for  movement in all_movement %}
+                        {% for  movement,prod in all_movement,all_product,all_location %}
                     <tr>
-                        <th scope="col"># {{movement["idproductmovement"]}}</th>
-                        <th scope="col">{{movement["product_name"]}}</th>
-                        <th scope="col">{{movement["location_name"]}}</th>
-                        <th scope="col">{{movement["quantity"]}}</th>
-                        <th scope="col">{{movement["timestamp"]}}</th>
+                        <th scope="col"># {{prod["idproductmovement"]}}</th>
+                        <th scope="col">{{prod["product_name"]}}</th>
+                        <th scope="col">{{prod["location_name"]}}</th>
+                        <th scope="col">{{prod["location_name"]}}</th>
+                        <th scope="col">{{prod["quantity"]}}</th>
+                        <th scope="col">{{prod["timestamp"]}}</th>
 
                     </tr>
                     {% endfor %}
