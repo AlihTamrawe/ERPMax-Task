@@ -9,6 +9,14 @@ main{
     left: 150px;
     
 }
+.menu{
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    height: auto;
+    background: rgba(239, 206, 206, 0.6);
+}
 
 #checker_board{
     

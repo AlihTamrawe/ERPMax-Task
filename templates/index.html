@@ -14,13 +14,22 @@
 </head>
 <body>
     
-    <header  >
+    <header  class="menu" >
+        
         <div class="card xl space_between">
             <a class="alert alert-primary" role="alert" href="/two"> Locations</a>
 
         </div>
         <div class="card">
-            <a class="alert alert-primary center" role="alert"href="/">Main</a>
+            <a class="alert alert-primary center" role="alert"href="/">Products</a>
+
+        </div>
+        <div class="card">
+            <a class="alert alert-primary center" role="alert"href="/move">Movement</a>
+
+        </div>
+        <div class="card">
+            <a class="alert alert-primary center" role="alert"href="/report">Report</a>
 
         </div>
     </header>
@@ -29,21 +38,60 @@
 
 
         <div >
-            {% if  flag==2 %}
-<div class="alert alert-info" role="alert"class="alert alert-info" role="alert">
-<h1>Add a Product</h1>
-<form action="/create_product" method="POST">
-    <p> the ProductName : <input type="text" name="pname"></p>
-    <p>location Name: 
-        <select name="locations_id">
-        {% for  location in all_locations %}
-        <option value="{{location["idlocation"]}}">{{location["location_name"]}} </option>
-        {% endfor%}
-        </select></p>
+            {% if  flag==0 %}
 
-    <input type="submit" value="Add product">
-</form>
-</div>
+        <div class="alert alert-info" role="alert"class="alert alert-info" role="alert">
+                <h1>Add a Product</h1>
+                    <form action="/create_move" method="POST">
+                        <p> the ProductName :  <p>location to move : 
+                            <select name="pname">
+                            {% for  product in all_products %}
+                            <option value="{{product["product_id"]}}">{{product["product_name"]}} </option>
+                            {% endfor%}
+                            </select>
+                        </p></p>
+                        <p>location from : 
+                            <select name="locations_id">
+                            {% for  location in all_locations %}
+                            <option value="{{location["idlocation"]}}">{{location["location_name"]}} </option>
+                            {% endfor%}
+                            </select>
+                        </p>
+                        <p>location to  : 
+                            <select name="locations_id">
+                            {% for  location in all_locations %}
+                            <option value="{{location["idlocation"]}}">{{location["location_name"]}} </option>
+                            {% endfor%}
+                            </select>
+                        </p>
+                        <p> quantity : <input type="number" name="qty"></p> <p>
+
+                        <input type="submit" value="Add Movement">
+                    </form>
+            </div>
+
+            {% endif %}
+
+
+
+
+            {% if  flag==2 %}
+
+        <div class="alert alert-info" role="alert"class="alert alert-info" role="alert">
+                <h1>Add a Product</h1>
+                    <form action="/create_product" method="POST">
+                        <p> the ProductName : <input type="text" name="pname"></p>
+                        <p>location Name: 
+                            <select name="locations_id">
+                            {% for  location in all_locations %}
+                            <option value="{{location["idlocation"]}}">{{location["location_name"]}} </option>
+                            {% endfor%}
+                            </select>
+                        </p>
+
+                        <input type="submit" value="Add product">
+                    </form>
+            </div>
 
 <div class="alert alert-info" role="alert"class="alert alert-info" role="alert">
     <h1>All My products</h1>
@@ -156,9 +204,52 @@
 
         
     </main>
-
-
-
     
+    <main>
+        {% if flag == 10%}
+        <div class="menu">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Product</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+              
+        </div>
+        {% endif%}
+
+
+
+
+    <div class="container ">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+          <div class="col-md-4 d-flex align-items-center">
+            <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+              <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
+            </a>
+            <span class="mb-3 mb-md-0 text-muted">&copy; 2023 Erp-Max, Inc</span>
+          </div>
+      
+        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+            <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"/></svg></a></li>
+            <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"/></svg></a></li>
+            <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"/></svg></a></li>
+        </ul>
+        </footer>
+    </div>
+    </main>
 </body>
 </html>
