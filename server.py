@@ -101,19 +101,18 @@ def add_location_to_db():
 @app.route("/create_move", methods=["POST"]) # create move
 def add_move_to_db():
     is_valid = True		# assume True
-    if (request.form['qty']) < 1:
+    if int(request.form['qty']) <  1:
         is_valid = False
+    print(int(request.form['qty']))
     date_time = datetime.now()
     mysql = connectToMySQL('inventory_management')	        
-    QUERY = 'INSERT INTO inventory_management.productmovement (product_id  , to_location , from_location , quantity , timestamp ) values (%(p_name)s,%(loca_t)s ,%(loca_f)s,%(qty)s ,%(timestamp)s );'
+    QUERY = 'INSERT INTO inventory_management.productmovement (product_id_m  , to_location , from_location , quantity , timestamp ) values (%(p_name)s,%(loca_t)s ,%(loca_f)s,%(qty)s ,%(timestamp)s );'
     data = {
         "p_name": request.form["pname"],
         "loca_f": request.form["locations_id_f"],
         "loca_t": request.form["locations_id_t"],
         "qty":request.form["qty"],
         "timestamp":datetime.now()
-
-
     }
     print (data)
     if is_valid : 
@@ -123,6 +122,15 @@ def add_move_to_db():
         
     return redirect("/")
 
+
+@app.route('/movement') # update move form
+def show_movement():
+    mysql = connectToMySQL('inventory_management')	        
+    query = "SELECT * FROM productmovement JOIN product JOIN location where product_id_m  = product_id  or location_id = to_location and location_id = from_location  ;"
+    result = mysql.query_db(query)   
+    print(result)
+    f=11
+    return render_template("index.html",all_movement = result,flag =f) 
 
 @app.route('/updatelocation/<id>') # update location form
 def update_location_form(id):

@@ -41,6 +41,11 @@
                             <a class="alert alert-primary center" role="alert"href="/report">Report</a>
             </div>
         </div>
+        <div class="row">
+            <div class="col-sm">
+                            <a class="alert alert-primary center" role="alert"href="/movement">System Movement</a>
+            </div>
+        </div>
     </div>    
     <main class="container-fluid ">
     
@@ -250,6 +255,44 @@
                     </tr>
                     
                 </tbody>
+            </table>
+            <div class="alert alert-success " >
+
+            <input class="btn btn-primary"  type="button" value="print the report"  onClick="window.print()">
+            </div>
+
+        </div>
+        {% endif%}
+
+        {% if flag == 11%}
+        <div class="container ">
+            <table class="table table-bordered">
+                <thead>
+
+               
+                    <tr>
+                        <th scope="row">id</th>
+                        <td>product</td>
+                        <td>location</td>
+                        <td>qty</td>
+                    </tr>
+                    
+                </thead>
+
+                    <tbody>
+                        {% for  movement in all_movement %}
+                    <tr>
+                        <th scope="col"># {{movement["idproductmovement"]}}</th>
+                        <th scope="col">{{movement["product_name"]}}</th>
+                        <th scope="col">{{movement["location_name"]}}</th>
+                        <th scope="col">{{movement["quantity"]}}</th>
+                        <th scope="col">{{movement["timestamp"]}}</th>
+
+                    </tr>
+                    {% endfor %}
+
+            </tbody>
+               
             </table>
             <div class="alert alert-success " >
 
