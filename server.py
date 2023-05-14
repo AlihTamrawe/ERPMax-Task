@@ -33,15 +33,24 @@ def index_move():
     return render_template("index.html",all_products = product,all_locations = locations,flag =f)
 
 
-@app.route("/report") 
+@app.route("/report")   # get product balance in each location 
 def index_report():
     mysql = connectToMySQL('inventory_management')	        
-    product = mysql.query_db('SELECT * FROM product;')  
-    print(product)
-    mysql2 = connectToMySQL('inventory_management')	        
-    locations = mysql2.query_db('SELECT * FROM location;')  
+    query = "SELECT  product_name, to_location, SUM(quantity) as qa   FROM   product  JOIN  productmovement  ON     product_id_m = product_id  Group By to_location ;"
+    result = mysql.query_db(query)   
+    mysql1 = connectToMySQL('inventory_management')	        
+    query2 = "SELECT * FROM location ;"
+    result2 = mysql1.query_db(query2)   
+    dic = {}    # i had used Dictanary data structure to define location in same table
+    for i in range (0,len(result2)):
+        dic[result2[i]['idlocation']] = result2[i]['location_name']
+        print(result2[i]['location_name'])
     f=10
-    return render_template("index.html",all_products = product,all_locations = locations,flag =f)
+
+    return render_template("index.html",all_movement =result ,all_location =dic ,flag =f) 
+
+##################################################################################################
+
 
 @app.route("/two")
 def index3():
@@ -283,18 +292,6 @@ def delete_product_to_db(id):
     return redirect("/") 
 
 
-@app.route("/delete_movement/<id>") # DELETE prod Route
-def delete_movement_to_db(id):
-    mysql = connectToMySQL('inventory_management')	        
-    QUERY = 'DELETE FROM productmovement WHERE product_id = %(id)s  ;'
-    data = {
-        "id" : id
-
-    }
-    print (data)
-    new_location = mysql.query_db(QUERY,data)
-    return redirect("/movement") 
-
 
 
 @app.route("/delete_location/<id>") # DELETE location Route
@@ -305,9 +302,26 @@ def delete_location_to_db(id):
         "id" : id
 
     }
+    new_location = mysql.query_db(QUERY,data)
+    print (new_location)
+
+    return redirect("/two") 
+
+
+@app.route("/delete_movement/<id>") # DELETE move Route
+def delete_movement_to_db(id):
+    mysql = connectToMySQL('inventory_management')	        
+    QUERY = 'DELETE FROM productmovement WHERE idproductmovement = %(id)s  ;'
+    data = {
+        "id" : id
+
+    }
     print (data)
     new_location = mysql.query_db(QUERY,data)
-    return redirect("/two") 
+    return redirect("/movement") 
+
+
+
 
 
 

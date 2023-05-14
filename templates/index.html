@@ -128,8 +128,9 @@
                 {% for  products in locationsforprod %}
                 <tr>
                       <th scope="col">#</th>
-                <th scope="col"> <p>Name :  <a href="/product/{{products["product_id"]}}"> t {{products["product_name"]}}</a></p></th>
+                <th scope="col"> <p>Name :  <a href="/product/{{products["product_id"]}}">  {{products["product_name"]}}</a></p></th>
                 <th scope="col"> <p>location :{{products["location_name"]}}</p></th>
+
             </tr>
 
         {% endfor %}
@@ -162,6 +163,7 @@
                         <th scope="col">#</th>
                         <th scope="col"> <p>location :{{location["location_name"]}}</p></th>
                         <th scope="col">  <a href="/location/{{location["location_name"]}}/{{location["idlocation"]}}">  {{location["location_name"]}}</a> </th>
+                        <th scope="col"> <a class="btn btn-danger" role="alert" href="/delete_location/{{location["idlocation"]}}"> DELETE location</a></th>
 
 {% endfor %}
             </thead>
@@ -174,7 +176,7 @@
 <p>  Name: {{prods["product_name"]}}</p>
 <p>location :{{location["location_name"]}}</p>
 <a class="alert alert-primary" role="alert" href="/updateproduct/{{prods["product_id"]}}"> update product</a>
-<a class="alert alert-primary" role="alert" href="/delete_product/{{prods["product_id"]}}"> DELETE product</a>
+<a class="btn btn-danger" role="alert" href="/delete_product/{{prods["product_id"]}}"> DELETE product</a>
 
 
 {% endif%}
@@ -235,23 +237,26 @@
     
     <main style="left: 50px;">
         {% if flag == 10%}
-        <div class="container ">
+        <div class="container sm ">
             <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Product</th>
-                        <th scope="col">Location</th>
-                        <th scope="col">Quantity</th>
+                        <th scope="col">WareHouse</th>
+                        <th scope="col">Qty</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {% for  movement in all_movement %}
+
                     <tr>
                         <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <td>{{movement["product_name"]}}</td>
+                        <td>{{all_location.get(movement["to_location"])}}</td>
+                        <td>{{movement["qa"]}}</td>
                     </tr>
+                    {% endfor %}
                     
                 </tbody>
             </table>
