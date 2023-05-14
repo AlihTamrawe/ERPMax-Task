@@ -283,14 +283,14 @@
                 </thead>
 
                     <tbody>
-                        {% for  movement,prod in all_movement,all_product,all_location %}
+                        {% for  movement in all_movement %}
                     <tr>
-                        <th scope="col"># {{prod["idproductmovement"]}}</th>
-                        <th scope="col">{{prod["product_name"]}}</th>
-                        <th scope="col">{{prod["location_name"]}}</th>
-                        <th scope="col">{{prod["location_name"]}}</th>
-                        <th scope="col">{{prod["quantity"]}}</th>
-                        <th scope="col">{{prod["timestamp"]}}</th>
+                        <th scope="col"># {{movement["idproductmovement"]}}</th>
+                        <th scope="col">{{movement["product_name"]}}</th>
+                        <th scope="col">{{all_location.get(movement["to_location"])}}</th>
+                        <th scope="col">{{all_location.get(movement["from_location"])}}</th>
+                        <th scope="col">{{movement["quantity"]}}</th>
+                        <th scope="col">{{movement["timestamp"]}}</th>
 
                     </tr>
                     {% endfor %}

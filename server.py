@@ -126,24 +126,42 @@ def add_move_to_db():
     return redirect("/")
 
 
+# @app.route('/movement') # update move form
+# def show_movement():
+#     mysql = connectToMySQL('inventory_management')	        
+#     query = "SELECT * FROM productmovement     INNER JOIN product   ON     product_id_m = product_id  ;"
+#     result = mysql.query_db(query)   
+
+#     mysql2 = connectToMySQL('inventory_management')	        
+#     query2 = "SELECT * FROM productmovement     INNER JOIN location  ON     idlocation = to_location  "
+#     result2 = mysql2.query_db(query2)   
+
+
+#     mysql3 = connectToMySQL('inventory_management')	        
+#     query3 = "SELECT * FROM productmovement     INNER JOIN location  ON     idlocation = from_location ;"
+#     result3 = mysql3.query_db(query3)   
+#     print(result)
+#     f=11
+
+#     return render_template("index.html",all_movement =result2 , all_product=result,all_location = result3 ,flag =f) 
+
+
 @app.route('/movement') # update move form
 def show_movement():
     mysql = connectToMySQL('inventory_management')	        
-    query = "SELECT * FROM productmovement     INNER JOIN product   ON     product_id_m = product_id  ;"
+    query = "SELECT idproductmovement, product_name, to_location, from_location    FROM productmovement     LEFT JOIN product   ON     product_id_m = product_id   ;"
     result = mysql.query_db(query)   
-
-    mysql2 = connectToMySQL('inventory_management')	        
-    query2 = "SELECT * FROM productmovement     INNER JOIN location  ON     idlocation = to_location  "
-    result2 = mysql2.query_db(query2)   
-
-
-    mysql3 = connectToMySQL('inventory_management')	        
-    query3 = "SELECT * FROM productmovement     INNER JOIN location  ON     idlocation = from_location ;"
-    result3 = mysql3.query_db(query3)   
-    print(result)
+    mysql1 = connectToMySQL('inventory_management')	        
+    query2 = "SELECT * FROM location ;"
+    result2 = mysql1.query_db(query2)   
+    dic = {}    # i had used Dictanary data structure to define location in same table
+    for i in range (0,len(result2)):
+        dic[result2[i]['idlocation']] = result2[i]['location_name']
+        print(result2[i]['location_name'])
+    print(dic.get(1))
     f=11
 
-    return render_template("index.html",all_movement =result2 , all_product=result,all_location = result3 ,flag =f) 
+    return render_template("index.html",all_movement =result ,all_location =dic ,flag =f) 
 
 @app.route('/updatelocation/<id>') # update location form
 def update_location_form(id):
