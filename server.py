@@ -132,7 +132,7 @@ def add_move_to_db():
     else:
         print("not Valid")
         
-    return redirect("/")
+    return redirect("/movement")
 
 
 # @app.route('/movement') # update move form
