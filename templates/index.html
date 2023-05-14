@@ -14,59 +14,83 @@
 </head>
 <body>
     
-    <header  class="menu" >
-        
-        <div class="card xl space_between">
+    <div class="d-flex justify-content-start align-items-center">
+        <div class="card">
+            <div class="row col">
+                <img  alt="..." class="img-thumbnail" src="/static/download.png"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">    
             <a class="alert alert-primary" role="alert" href="/two"> Locations</a>
-
+            </div>
+            
         </div>
-        <div class="card">
-            <a class="alert alert-primary center" role="alert"href="/">Products</a>
-
+        <div class="card me-2">
+            <div class="col">    
+                <a class="alert alert-primary center" role="alert"href="/">Products</a>
+            </div>
         </div>
-        <div class="card">
-            <a class="alert alert-primary center" role="alert"href="/move">Movement</a>
-
+        <div class="row">
+            <div class="col">
+                <a class="alert alert-primary center" role="alert"href="/move">Movement</a>
+            </div>
         </div>
-        <div class="card">
-            <a class="alert alert-primary center" role="alert"href="/report">Report</a>
-
+        <div class="row">
+            <div class="col-sm">
+                            <a class="alert alert-primary center" role="alert"href="/report">Report</a>
+            </div>
         </div>
-    </header>
-    <main>
+    </div>    
+    <main class="container-fluid ">
     
 
 
-        <div >
             {% if  flag==0 %}
 
         <div class="alert alert-info" role="alert"class="alert alert-info" role="alert">
-                <h1>Add a Product</h1>
-                    <form action="/create_move" method="POST">
-                        <p> the ProductName :  <p>location to move : 
-                            <select name="pname">
-                            {% for  product in all_products %}
-                            <option value="{{product["product_id"]}}">{{product["product_name"]}} </option>
-                            {% endfor%}
-                            </select>
-                        </p></p>
-                        <p>location from : 
-                            <select name="locations_id">
-                            {% for  location in all_locations %}
-                            <option value="{{location["idlocation"]}}">{{location["location_name"]}} </option>
-                            {% endfor%}
-                            </select>
-                        </p>
-                        <p>location to  : 
-                            <select name="locations_id">
-                            {% for  location in all_locations %}
-                            <option value="{{location["idlocation"]}}">{{location["location_name"]}} </option>
-                            {% endfor%}
-                            </select>
-                        </p>
-                        <p> quantity : <input type="number" name="qty"></p> <p>
+            <div class="card">
+                <div class="card-header">
+                <h1>Add a Movement</h1>
+                </div>
+            </div>
 
-                        <input type="submit" value="Add Movement">
+                    <form action="/create_move" method="POST">
+                        <div class="form-group col-md-6">
+                            <p class="form-control" >  the ProductName : 
+                                <select name="pname">
+                                {% for  product in all_products %}
+                                <option value="{{product["product_id"]}}">{{product["product_name"]}} </option>
+                                {% endfor%}
+                                </select>
+                            </p>
+                        </div>  
+                        <div class="form-group col-md-6">
+                            <p class="form-control">location from : 
+                                <select name="locations_id_f">
+                                {% for  location in all_locations %}
+                                <option value="{{location["idlocation"]}}">{{location["location_name"]}} </option>
+                                {% endfor%}
+                                </select>
+                            </p>
+                        </div>  
+                        <div class="form-group col-md-6">
+                            <p class="form-control">location to  : 
+                                <select name="locations_id_t">
+                                {% for  location in all_locations %}
+                                <option value="{{location["idlocation"]}}">{{location["location_name"]}} </option>
+                                {% endfor%}
+                                </select>
+                            </p>
+                        </div>  
+                        <div class="form-group col-md-6">
+                            <p class="form-control"> quantity : <input type="number" name="qty"></p> <p>
+                        </div>  
+                        <div class="form-group col-md-2">
+                            <p class="form-control">
+                                <input type="submit" class="btn btn-primary"  value="Add Movement">
+                            </p>
+                        </div>
                     </form>
             </div>
 
@@ -89,7 +113,7 @@
                             </select>
                         </p>
 
-                        <input type="submit" value="Add product">
+                        <input class="btn btn-primary"  type="submit" value="Add product">
                     </form>
             </div>
 
@@ -121,7 +145,7 @@
             <form action="/create_location" method="POST">
                 <p>location Name: <input type="text" name="lname"></p>
 
-                <input type="submit" value="Add location">
+                <input class="btn btn-primary"  type="submit" value="Add location">
             </form>
             </div>
             <div class="alert alert-info" role="alert"class="alert alert-info" role="alert">
@@ -168,8 +192,8 @@
 {% endfor %}
     </thead>
 </table>
-<a class="alert alert-primary" role="alert" href="/updatelocation/{{loca["idlocation"]}}"> update location</a>
-<a class="alert alert-primary" role="alert" href="/delete_location/{{loca["idlocation"]}}"> DELETE location</a>
+<a class="btn btn-primary"  role="alert" href="/updatelocation/{{loca["idlocation"]}}"> update location</a>
+<a class="btn btn-primary"  role="alert" href="/delete_location/{{loca["idlocation"]}}"> DELETE location</a>
 
 {% endif%}
 
@@ -179,7 +203,7 @@
                 <form action="/update_product/{{prod["product_id"]}}" method="POST">
                     <p>product Name: <input type="text" value="{{prod["product_name"]}}" name="pname"></p>
 
-                    <input type="submit" value="update product">
+                    <input class="btn btn-primary"  type="submit" value="update product">
                 </form>
             </div>
 {% endif%}
@@ -190,7 +214,7 @@
                 <form action="/update_location/{{loca["idlocation"]}}" method="POST">
                     <p>location Name: <input type="text" value="{{loca["location_name"]}}" name="lname"></p>
 
-                    <input type="submit" value="update location">
+                    <input class="btn btn-primary"  type="submit" value="update location">
                 </form>
             </div>
 {% endif%}
@@ -207,7 +231,7 @@
     
     <main>
         {% if flag == 10%}
-        <div class="menu">
+        <div class="container ">
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -227,7 +251,11 @@
                     
                 </tbody>
             </table>
-              
+            <div class="alert alert-success " >
+
+            <input class="btn btn-primary"  type="button" value="print the report"  onClick="window.print()">
+            </div>
+
         </div>
         {% endif%}
 

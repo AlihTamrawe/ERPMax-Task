@@ -1,7 +1,12 @@
 *{
-    background-color: rgb(232, 238, 238);
     margin: 0;
     padding: 0;
+}
+body{
+    margin: auto;
+    padding:auto ;
+    width: 100%;
+    height: 100%;
 }
 main{
     position: relative;
@@ -15,7 +20,7 @@ main{
     display: flex;
     width: 100%;
     height: auto;
-    background: rgba(239, 206, 206, 0.6);
+    background: rgb(255, 255, 255);
 }
 
 #checker_board{
@@ -47,14 +52,20 @@ main{
 header{
     position: absolute;
     display: flex;
-     background-color: aliceblue;
+     background-color: white;
      border: 4px 2px black;
-    box-shadow: 2px gray;
+    box-shadow: 5px rgb(243, 240, 240);
     width: 100%;
     height: 150px;
     padding: 20px;
 }
 header a {
     font-family: cursive;
+    
     text-align: center;
+}
+
+p , a, h1,h2,h3{
+    font-family: cursive;
+    font-weight: 200;
 }

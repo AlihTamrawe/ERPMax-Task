@@ -1,6 +1,9 @@
 from operator import index
 from flask import Flask, render_template, request, redirect  
 from  mysqlconnection import connectToMySQL
+from datetime import datetime  
+
+
 #----------------------------1-halloworld
 f=100
 app = Flask(__name__)  
@@ -58,7 +61,7 @@ def index2():
     f=2
     return render_template("index.html",all_products = products,locationsforprod=locations,all_locations=allocations,flag =f)# http://localhost:5000 - should display 8 by 8 checkerboard
 
-@app.route("/create_product", methods=["POST"])
+@app.route("/create_product", methods=["POST"]) # create pod
 def add_product_to_db():
     is_valid = True		# assume True
     if len(request.form['pname']) < 4:
@@ -92,6 +95,33 @@ def add_location_to_db():
     print (data)
     new_location = mysql.query_db(QUERY,data)
     return redirect("/two") 
+
+
+
+@app.route("/create_move", methods=["POST"]) # create move
+def add_move_to_db():
+    is_valid = True		# assume True
+    if (request.form['qty']) < 1:
+        is_valid = False
+    date_time = datetime.now()
+    mysql = connectToMySQL('inventory_management')	        
+    QUERY = 'INSERT INTO inventory_management.productmovement (product_id  , to_location , from_location , quantity , timestamp ) values (%(p_name)s,%(loca_t)s ,%(loca_f)s,%(qty)s ,%(timestamp)s );'
+    data = {
+        "p_name": request.form["pname"],
+        "loca_f": request.form["locations_id_f"],
+        "loca_t": request.form["locations_id_t"],
+        "qty":request.form["qty"],
+        "timestamp":datetime.now()
+
+
+    }
+    print (data)
+    if is_valid : 
+        new_poduct = mysql.query_db(QUERY,data)
+    else:
+        print("not Valid")
+        
+    return redirect("/")
 
 
 @app.route('/updatelocation/<id>') # update location form
