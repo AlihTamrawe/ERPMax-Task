@@ -69,3 +69,12 @@ p , a, h1,h2,h3{
     font-family: cursive;
     font-weight: 200;
 }
+.mt-0 {
+    margin-top: 0 !important;
+    margin-bottom: 5px;
+    margin: 5px
+  }
+
+.p-3{
+padding: auto;
+}

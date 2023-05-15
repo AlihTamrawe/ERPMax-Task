@@ -13,55 +13,55 @@
 </head>
 <body>
     
-    <div class="d-flex justify-content-start align-items-center">
-        <div class="card">
-            <div class="row col">
+    <div class="d-sm-flex align-items-center .justify-content-between-sm  align-items-center    ">
+        <div class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top ">
+            <div class=" d-flex flex-wrap row col">
                 <img  alt="..." class="img-thumbnail" src="/static/download.png"/>
             </div>
         </div>
-        <div class="row">
-            <div class="col">    
+        <div class="d-flex row">
+            <div class="d-flex flex-wrap col-sm-2">  
             <a class="alert alert-primary" role="alert" href="/two"> Locations</a>
             </div>
             
         </div>
-        <div class="card me-2">
-            <div class="col">    
+        <div class="d-flex flex-wrap row">
+            <div class="d-flex col-sm-2">  
                 <a class="alert alert-primary center" role="alert"href="/">Products</a>
             </div>
         </div>
-        <div class="row">
-            <div class="col">
+        <div class="d-flex flex-wrap row">
+            <div class="d-flex col-sm-2">
                 <a class="alert alert-primary center" role="alert"href="/move">Movement</a>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm">
+        <div class="d-flex row">
+            <div class="d-flex col-sm">
                             <a class="alert alert-primary center" role="alert"href="/report">Report</a>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm">
+        <div class="d-flex row">
+            <div class="d-flex flex-wrap col-sm">
                             <a class="alert alert-primary center" role="alert"href="/movement">System Movement</a>
             </div>
         </div>
     </div>    
-    <main class="container-fluid ">
+    <main class="d-flex container-fluid ">
     
 
 
             {% if  flag==0 %}
 
-        <div class="alert alert-info" role="alert"class="alert alert-info" role="alert">
-            <div class="card">
-                <div class="card-header">
+        <div class="container d-flex flex-wrap " role="alert"class="alert alert-info" role="alert">
+            <div class="d-flex flex-wrap card col-md-6">
+                <div class="card-header xl">
                 <h1>Add a Movement</h1>
                 </div>
             </div>
 
-                    <form action="/create_move" method="POST">
-                        <div class="form-group col-md-6">
-                            <p class="form-control" >  the ProductName : 
+                    <form action="/create_move" method="POST"class="d-flex flex-wrap" >
+                        <div class="d-flex flex-wrap form-group col-md-6">
+                            <p class="d-flex flex-wrap form-control" >  the ProductName : 
                                 <select name="pname">
                                 {% for  product in all_products %}
                                 <option value="{{product["product_id"]}}">{{product["product_name"]}} </option>
@@ -155,7 +155,7 @@
             </div>
             <div class="alert alert-info" role="alert"class="alert alert-info" role="alert">
 
-        <h1>All My locations</h1>
+                <h1>All My locations</h1>
         <table class="table table-striped">
             <thead>
                 {% for  location in all_locations %}
@@ -165,21 +165,21 @@
                         <th scope="col">  <a href="/location/{{location["location_name"]}}/{{location["idlocation"]}}">  {{location["location_name"]}}</a> </th>
                         <th scope="col"> <a class="btn btn-danger" role="alert" href="/delete_location/{{location["idlocation"]}}"> DELETE location</a></th>
 
-{% endfor %}
+                {% endfor %}
             </thead>
         </table>
 
             </div>
 {% endif%}
-{% if  flag==4 %}
-<h1>this Special {{prods["product_name"]}}</h1>
-<p>  Name: {{prods["product_name"]}}</p>
-<p>location :{{location["location_name"]}}</p>
-<a class="alert alert-primary" role="alert" href="/updateproduct/{{prods["product_id"]}}"> update product</a>
-<a class="btn btn-danger" role="alert" href="/delete_product/{{prods["product_id"]}}"> DELETE product</a>
+                {% if  flag==4 %}
+                <h1>this Special {{prods["product_name"]}}</h1>
+                <p>  Name: {{prods["product_name"]}}</p>
+                <p>location :{{location["location_name"]}}</p>
+                <a class="alert alert-primary" role="alert" href="/updateproduct/{{prods["product_id"]}}"> update product</a>
+                <a class="btn btn-danger" role="alert" href="/delete_product/{{prods["product_id"]}}"> DELETE product</a>
 
 
-{% endif%}
+                {% endif%}
 
 
 
@@ -347,22 +347,22 @@
 
 
 
-    <div class="container ">
-        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-          <div class="col-md-4 d-flex align-items-center">
-            <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
-              <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
-            </a>
-            <span class="mb-3 mb-md-0 text-muted">&copy; 2023 Erp-Max, Inc</span>
-          </div>
-      
-        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-            <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"/></svg></a></li>
-            <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"/></svg></a></li>
-            <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"/></svg></a></li>
-        </ul>
-        </footer>
-    </div>
+        <div class="container xl ">
+            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <div class="col-md-4 d-flex align-items-center">
+                <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
+                </a>
+                <span class="mb-3 mb-md-0 text-muted">&copy; 2023 Erp-Max, Inc</span>
+            </div>
+        
+            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"/></svg></a></li>
+                <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"/></svg></a></li>
+                <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"/></svg></a></li>
+            </ul>
+            </footer>
+        </div>
     </main>
 </body>
 </html>
