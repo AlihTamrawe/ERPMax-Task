@@ -6,7 +6,7 @@ Language - [Python](https://www.python.org/)<br />
 Web framework - [Flask](http://flask.pocoo.org/)<br />
 Html tepmlate - [Jinja 2](http://jinja.pocoo.org/docs/dev/)<br />
 Database - [MySQL](https://www.mysql.com/)<br />
-visual code studio [Code Editer](https://code.visualstudio.com/)<br/>
+visual code studio - [Code Editer](https://code.visualstudio.com/)<br/>
 
 
 ## Workspace
