@@ -60,6 +60,7 @@ python-flask-mysql-template/
 
 
 ## Sql Quesris used : 
+```
 -- INSERT INTO inventory_management.location (location_name  ) values (%(l_name)s );
 -- INSERT INTO inventory_management.product (product_name , location_id ) values (%(p_name)s,%(loca_id)s )
 -- SELECT * FROM location JOIN product where location_id = idlocation ;
@@ -68,5 +69,5 @@ python-flask-mysql-template/
 -- SELECT * FROM product;
 --INSERT INTO inventory_management.productmovement (product_id_m  , to_location , from_location , quantity , timestamp ) values (%(p_name)s,%(loca_t)s ,%(loca_f)s,%(qty)s ,%(timestamp)s );
 
-```
+
 
