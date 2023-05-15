@@ -5,7 +5,18 @@ from datetime import datetime
 import itertools 
 
 
-#----------------------------1-halloworld
+
+
+def locations_fun():
+    mysql3 = connectToMySQL('inventory_management')	        
+    allocations = mysql3.query_db('SELECT * FROM location  ;')  
+    return allocations
+
+
+def product_fun():
+    mysql = connectToMySQL('inventory_management')	        
+    product = mysql.query_db('SELECT * FROM product;')  
+    return product
 f=100
 app = Flask(__name__)  
 @app.context_processor
@@ -13,8 +24,7 @@ def add_imports():
     return dict( itertools=itertools )
 @app.route("/one")     #test
 def index():
-    mysql = connectToMySQL('inventory_management')	        
-    product = mysql.query_db('SELECT * FROM product;')  
+    product =product_fun()
     print(product)
     f=1
     return render_template("index.html",all_products = product,flag =f)
@@ -24,11 +34,9 @@ def index():
 
 @app.route("/move") 
 def index_move():
-    mysql = connectToMySQL('inventory_management')	        
-    product = mysql.query_db('SELECT * FROM product;')  
-    print(product)
-    mysql2 = connectToMySQL('inventory_management')	        
-    locations = mysql2.query_db('SELECT * FROM location;')  
+    product = product_fun() 
+    print(product)    
+    locations = locations_fun()
     f=0
     return render_template("index.html",all_products = product,all_locations = locations,flag =f)
 
@@ -54,8 +62,7 @@ def index_report():
 
 @app.route("/two")
 def index3():
-    mysql = connectToMySQL('inventory_management')	        
-    locations = mysql.query_db('SELECT * FROM location;')  
+    locations = locations_fun();
     print(locations)
     f=3
     return render_template("index.html",all_locations = locations,flag =f)
