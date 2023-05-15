@@ -1,5 +1,5 @@
 # ERPMax-Task
-ERP Max Task Management System for movement 
+ERP Max Task Management System for Inventory Management Web Application
 
 ## Technologies
 Language - [Python](https://www.python.org/)<br />
