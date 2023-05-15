@@ -54,7 +54,7 @@ python-flask-mysql-template/
 
 
 
-## the flow is descripe in bellow link
+## the flow is descripe in bellow link Video
 -- https://drive.google.com/file/d/1JGcifIo3EmNd9KK3NMbgF3CgjFdNxnfI/view?usp=sharing
 
 
