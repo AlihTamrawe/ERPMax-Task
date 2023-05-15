@@ -1,7 +1,29 @@
 title=ERPMax%20Task
 ERP Max Task Management System for movement 
 
-## Technologies used
+## Technologies
+Language - [Python](https://www.python.org/)<br />
+Web framework - [Flask](http://flask.pocoo.org/)<br />
+Html tepmlate - [Jinja 2](http://jinja.pocoo.org/docs/dev/)<br />
+Database - [MySQL](https://www.mysql.com/)<br />
+
+
+
+## Workspace
+Your workspace should look like:
+```
+python-flask-mysql-template/
+    static/
+        css/
+            style.css       # css style
+    templates/
+        index.html          # html template
+    server.py                  # main Python app code
+    database_backup.sql     # MySQL database dump
+    README.md
+    LICENSE
+
+```
 
 
 
