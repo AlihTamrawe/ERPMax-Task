@@ -19,7 +19,7 @@ python-flask-mysql-template/
     templates/
         index.html          # html template
     server.py                  # main Python app code
-    database_backup.sql     # MySQL database dump
+    mysqlconnection.sql     # MySQL database dump
     README.md
     LICENSE
 
@@ -56,3 +56,17 @@ python-flask-mysql-template/
 
 ## the flow is descripe in bellow link
 -- https://drive.google.com/file/d/1JGcifIo3EmNd9KK3NMbgF3CgjFdNxnfI/view?usp=sharing
+
+
+
+## Sql Quesris used : 
+-- INSERT INTO inventory_management.location (location_name  ) values (%(l_name)s );
+-- INSERT INTO inventory_management.product (product_name , location_id ) values (%(p_name)s,%(loca_id)s )
+-- SELECT * FROM location JOIN product where location_id = idlocation ;
+-- SELECT  product_name, to_location, SUM(quantity) as qa   FROM   product  JOIN  productmovement  ON     product_id_m = product_id Group By to_location ;
+-- SELECT * FROM location;
+-- SELECT * FROM product;
+--INSERT INTO inventory_management.productmovement (product_id_m  , to_location , from_location , quantity , timestamp ) values (%(p_name)s,%(loca_t)s ,%(loca_f)s,%(qty)s ,%(timestamp)s );
+
+```
+
