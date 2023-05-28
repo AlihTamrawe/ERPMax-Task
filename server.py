@@ -44,8 +44,8 @@ def index_move():
 @app.route("/report")   # get product balance in each location 
 def index_report():
     mysql = connectToMySQL('inventory_management')	        
-    query = "SELECT  product_name, to_location, SUM(quantity) as qa   FROM   product  JOIN  productmovement  ON     product_id_m = product_id  Group By to_location ;"
-    result = mysql.query_db(query)   
+    query = "SELECT  product_name, to_location, SUM(to_location)   -  SUM(from_location) as balance   FROM   product  LEFT JOIN  productmovement  ON     product_id_m = product_id  Group By to_location ;"
+    result = mysql.query_db(query)   # corrected the query from quantity to balance of from - to location balance as requirement of change that you asked 
     mysql1 = connectToMySQL('inventory_management')	        
     query2 = "SELECT * FROM location ;"
     result2 = mysql1.query_db(query2)   

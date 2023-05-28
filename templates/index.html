@@ -243,7 +243,7 @@
                         <th scope="col">#</th>
                         <th scope="col">Product</th>
                         <th scope="col">WareHouse</th>
-                        <th scope="col">Qty</th>
+                        <th scope="col">Balance</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -253,7 +253,7 @@
                         <th scope="row">1</th>
                         <td>{{movement["product_name"]}}</td>
                         <td>{{all_location.get(movement["to_location"])}}</td>
-                        <td>{{movement["qa"]}}</td>
+                        <td>{{movement["balance"]}}</td>
                     </tr>
                     {% endfor %}
                     
