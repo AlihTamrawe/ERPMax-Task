@@ -77,7 +77,7 @@ def index2():
     allocations = mysql3.query_db('SELECT * FROM location  ;')  
 
     print(locations)
-    f=2
+    f=2 # indecator which part of Dom should appear for UI 
     return render_template("index.html",all_products = products,locationsforprod=locations,all_locations=allocations,flag =f)# http://localhost:5000 - should display 8 by 8 checkerboard
 
 @app.route("/create_product", methods=["POST"]) # create pod
