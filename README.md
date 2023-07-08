@@ -1,4 +1,4 @@
-# ERPMax-Task
+# ECOMERCE Task
 ERP Max Task Management System for Inventory Management Web Application
 
 ## Technologies
